@@ -1,4 +1,8 @@
+//
+//
 // FONCTIONS PAGE INDEX
+//
+//
 
 //fonction compteur
 function meter() {
@@ -14,9 +18,7 @@ function meter() {
 };
 
 
-// fonction pour initialisé les cardProducts
-
-
+// fonction pour initialiser les cards 
 function setGeneral(container, camElement, selector) {
     let element = container.querySelector(selector);
     if( selector.includes("image") ){
@@ -61,9 +63,11 @@ function getAlldata(placement) {
     });
 }
 
-
+//
+//
 // FONCTIONS PAGE PRODUCT
-
+//
+//
 
 // fonction pour afficher les options de lentilles 
 function lensesOption(product) {
@@ -94,14 +98,18 @@ function displayProduct(product) {
 
 }
 
-
+//
+//
 // FONCTIONS PAGE SHOP
+//
+//
 
 // fonction qui observe si le panier est vide ou non
 function listenerCart() {
     // si le panier est vide :
     if (cameraStore.length === 0 || cameraStore === null) {
         validation.style.display = " none";
+        formValidation.style.display = " none ";
         let emptyCart = document.getElementById("empty-cart")
         emptyCart.classList.remove("d-none")
 
@@ -202,11 +210,8 @@ function formManagement(){
 
 
     if (formChecked == false) {
-
         alert('Merci de bien vouloir remplir tout les champs requis afin de valider votre commande');
-
     }else{
-
         let contact = {
             firstName: document.getElementById('inputFirstName').value,
             lastName: document.getElementById('inputLastName').value,
@@ -265,14 +270,13 @@ function formManagement(){
     }
 }
 
-
+//
+//
 // PAGE CONFIRMATION
-
-
+//
+//
 
 // Fonction qui ajoute un compte dans le panier
-
-
 function cameraNumber(){
     //recuperation article dans localstorage
     const cameraStore = JSON.parse(localStorage.getItem("camInCart"));
