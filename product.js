@@ -12,8 +12,9 @@ fetch(urlApiId)
         response.json()
     .then((product) => {
       displayProduct(product);
-
+        // on écoute le click du bouton
          btn.addEventListener("click",()=>{
+           // créaion variable des infos du produit sélectionné
             let cameraChoice = {
               camName : product.name,
               camId   : product._id,
@@ -25,17 +26,19 @@ fetch(urlApiId)
                     return this.camPrice * this.camQuantity;
                 } 
             };console.log(cameraChoice);
-           
+           // si le localStorage est défini
             if(typeof localStorage != "undefined"){
                 // on recupère la valeur dans le localStorage
               let cameraStore  = JSON.parse(localStorage.getItem("camInCart"));
+                    // si "camInCart" n'existe pas ou est null
                     if (cameraStore === null || cameraStore === "undefined") {
                         cameraStore = []; // on crée le tableau 
-                        cameraStore.push(cameraChoice);
+                        cameraStore.push(cameraChoice); // on push la varialble dans cameraStore
                        } 
                      if(cameraStore) {
-                        cameraStore.push(cameraChoice); // si le tableau existe on push le choix
+                        cameraStore.push(cameraChoice); // si le tableau existe on push la varialble dans cameraStore
                      } 
+                    // on met la variable cameraStore dans localStorage (on redéfini camInCart)
                     localStorage.setItem("camInCart", JSON.stringify(cameraStore));
                           if (window.confirm(`Vous avez bien ajouté ${cameraChoice.camQuantity} - ${product.name} au panier. Souhaitez-vous continuer vos achat ?`)) {
                             window.location.href = "index.html";

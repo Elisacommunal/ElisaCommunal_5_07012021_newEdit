@@ -89,20 +89,20 @@ function lensesOption(product) {
 
 // fonction pour faire la mise en page de la card product.html
 function displayProduct(product) {
-    let containerProduct = document.getElementById('ici');
+    let containerProduct = document.getElementById('container-prod');
     let container = document.querySelector('.container-product');
 
-
+    // appel des fonctions avec leur bon paramètres
     setGeneral( container, product.imageUrl, '.product-image' ) 
     setGeneral( container, product.name, '.product-title' ) 
     setGeneral( container, product.price / 100, '.product-price' ) 
     setGeneral( container, product.description, '.product-descript' ) 
     lensesOption(product);
 
-
+    // suppression du display-none
     container.classList.remove('d-none');
+    // ajout des données au template de base
     containerProduct.append(container);
-
 }
 
 //
@@ -115,17 +115,17 @@ function displayProduct(product) {
 function listenerCart() {
     // si le panier est vide :
     if (cameraStore.length === 0 || cameraStore === null) {
+        // pas d'affichage du bouton validation ni du formulaire d'achat
         validation.style.display = " none";
         formValidation.style.display = " none ";
         let emptyCart = document.getElementById("empty-cart")
+        // supression du display-none sur la partie qui indique que le panier est vide
         emptyCart.classList.remove("d-none")
 
-        // s'il y a des produits dans le panier : 
+    // s'il y a des produits dans le panier : 
     } else {
-
         totalPriceCartMeter();
         displayCamera();
-
     };
 }
 
@@ -147,7 +147,7 @@ function displayCart(cam, index) {
     let container = cameraElement.cloneNode(true);
     let clone = document.getElementById("clone-template");
 
-    // appel de chaques elements avec la fonction setGeneral 
+    // appel des fonctions avec leur bon paramètres
     setGeneral(container, cam.camImage, '.camera-image')
     setGeneral(container, cam.camName, '.camera-name')
     setGeneral(container, cam.camLenses, '.camera-lenses')
@@ -155,16 +155,20 @@ function displayCart(cam, index) {
     setGeneral(container, cam.camPrice, '.camera-price')
     setGeneral(container, cam.totalPrice, '.camera-totalPrice')
     
-
+    // suppression du display-none
     container.classList.remove('d-none')
+    // ajout des données au template de base
     clone.append(container)
 
     const btnDelete = container.querySelector('.deleteBtn');
-
+    // suppression du produit dans le panier
         btnDelete.addEventListener('click', () => {
+
+    // si on veut supprimer on appel la fonction et on recharge la page
     if (window.confirm(`Voulez-vous vraiment supprimer cet article de votre panier ?`)) {
         deleteCamera(index);
         window.location.href = "shop.html";
+    // sinon on recharge la page
     } else {
         window.location.href = "shop.html";
     };   
@@ -183,28 +187,34 @@ function displayCamera() {
 
 // fonction deleteCamera qui sera appelé à l'interieur de l'évenement btnDelete pour suppr l'élément
 function deleteCamera(index) {
+    // suppression du produit
     cameraStore.splice(index, 1);
+    // redefinition du localStorage
     localStorage.setItem("camInCart", JSON.stringify(cameraStore))
+    // récupération du localStorage
     JSON.parse(localStorage.getItem("camInCart"));
+    // appel des fonctions
     displayCamera();
     totalPriceCartMeter();
 }
 
 // incrementation du calcul du prix total de la commande:
 function totalPriceCartMeter() {
-
+    // création du tableau
     let arrayTotalPrice = [];
     for (const camInStore of cameraStore) {
         let priceProduct = camInStore.totalPrice;
+        // envoi du prix total dans le tableau
         arrayTotalPrice.push(priceProduct);
     }
     console.log(arrayTotalPrice);
-
+    // si le tableau est vide on renvoit à la page du panier vide
     if (arrayTotalPrice.length === 0) {
         location.assign('shop.html');
+    // sinon on ajoute le prix des produits, on affichage le montant total et on redéfini le prix total dans le localStorage
     } else {
         let totalPriceCart = arrayTotalPrice.reduce((accumulator, currentValue) => accumulator + currentValue);
-        totalPriceOrder.innerHTML = `PRIX TOTAL: ${totalPriceCart}€`;
+        totalPriceOrder.innerHTML = totalPriceCart;
         localStorage.setItem("totalPrice", totalPriceCart);
         console.log(localStorage);
     }
@@ -215,9 +225,11 @@ function formManagement(){
     let check = document.getElementById('gridCheck').value;
     let formChecked = document.getElementById('formChecked').checkValidity();
 
-
+    // Si le formulaire est faux on envoi une alerte
     if (formChecked == false) {
         alert('Merci de bien vouloir remplir tout les champs requis afin de valider votre commande');
+
+    // sinon on crée un objet de récuperation des données de l'utilisateur
     }else{
         let contact = {
             firstName: document.getElementById('inputFirstName').value,
@@ -226,10 +238,11 @@ function formManagement(){
             city: document.getElementById('inputCity').value,
             email: document.getElementById('inputEmail').value,
         };
-        console.log(contact);
+        //console.log(contact);
 
         let products = [];
-        console.log(cameraStore);
+        //console.log(cameraStore);
+        // pour chaque produits de cameraStore on récupere son id et on l'envoi dans la tableau products
         for (let camreraInstore of cameraStore){
             let productsId = camreraInstore.camId;
             products.push(productsId);
