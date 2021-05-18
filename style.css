@@ -10,6 +10,7 @@ main {
 
 .ml-auto {
   margin-left: auto !important;
+  margin-right: 20px;
 }
 
 .center {

@@ -21,11 +21,14 @@ function meter() {
 // fonction pour initialiser les cards 
 function setGeneral(container, camElement, selector) {
     let element = container.querySelector(selector);
+    // si "image" contenu dans le selector ajouter src + alt
     if( selector.includes("image") ){
         element.src = camElement;
         element.alt = camElement;
+    // sinon si "image" contenu dans le selector ajouter href
     }else if(selector.includes("link")){
         element.href += camElement;
+    //sinon utiliser seulement camElement
     }else{
     element.innerHTML = camElement;
     }
@@ -38,22 +41,26 @@ function setGeneral(container, camElement, selector) {
 function displayProducts(product, id_container) {
     let containerProducts = document.getElementById(id_container);
     let baseContainer = document.querySelector('.container-products');
+    // clonage pour réutiliser un template créé dans le HTML
     let container = baseContainer.cloneNode(true);
 
-
+    // appel des fonctions avec leur bon paramètres
     setGeneral( container, product.imageUrl, '.product-image' ) 
     setGeneral( container, product.name, '.product-title' ) 
     setGeneral( container, product.description, '.product-descript' ) 
     setGeneral( container, product.price / 100, '.product-price' ) 
     setGeneral( container, product._id, '.product-link')
  
-    
+    // suppression du display-none
     container.classList.remove('d-none')
+    // ajout des données au template de base
     containerProducts.append(container)
 }
 
 // fonction pour faire apparaitre les card index.html
 function getAlldata(placement) {
+    // pour tout les elements present dans l'objet placement
+    // application de la fonction getData puis de Display products
     placement.forEach(element => {
         getData(element.id)
             .then(product => {
@@ -74,7 +81,7 @@ function lensesOption(product) {
     let lensesChoice = document.getElementById("choix-lentille")
     for (let i = 0; i < product.lenses.length; i++) {
         let newLensesChoice = document.createElement("option")
-        newLensesChoice.innerText = product.lenses[i];
+        newLensesChoice.innerHTML = product.lenses[i];
         lensesChoice.append(newLensesChoice);
         console.log(newLensesChoice);
     }
