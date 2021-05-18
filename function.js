@@ -131,7 +131,9 @@ function listenerCart() {
 
 // pour récuperer les datas dans localStorage
 function getBackCamera() {
+    // récupération de la variable d'info du produit
     let cameraStore = JSON.parse(localStorage.getItem("camInCart"));
+    // si il n'est pas défini on crée un tableau
     if (cameraStore === null || cameraStore === "undefined") {
         cameraStore = [];
     }
@@ -178,11 +180,13 @@ function displayCart(cam, index) {
 
 // fonction présentation du produit
 function displayCamera() {
+    // création d'un tableau avec deux parametres
     const camerasStore = cameraStore.map((cam, index) => {
         return displayCart(cam, index);
     });
     displayStore.innerHTML = " ";
     displayStore.append(...camerasStore);
+    // création de tout les articles 
 };
 
 // fonction deleteCamera qui sera appelé à l'interieur de l'évenement btnDelete pour suppr l'élément
@@ -252,6 +256,7 @@ function formManagement(){
         let order = { contact, products };
         console.log(order);
 
+        // fetch Order POST
         let sendData = fetch("http://localhost:3000/api/cameras/order", {
             method: 'POST',
             body: JSON.stringify(order),
@@ -260,19 +265,21 @@ function formManagement(){
             }
         })
         sendData.then( async response =>{
-            try{
+
+            try{// traitement de la reponse, récupération de l'id de confirmation du serveur
                 console.log(response);
                 let confirmation = await response.json();
                 console.log(confirmation);
                 let confirmationId = confirmation.orderId;
                 console.log(confirmationId);
-
+                // création de variable avec contact et l'id récupéré
                 let result = {
                     contact: contact,
                     confirmationId: confirmationId,
                 }
                 console.log(result);
-
+                // si localStorage est défini on envoi result dans localStorage et on vide la selection en créant un tableau vide 
+                //qu'on envoi dans localStorage et redirection page confirmation
                 if(typeof localStorage != "undefined"){
                     localStorage.setItem("confirm", JSON.stringify(result));
                     localStorage.setItem("camInCart", JSON.stringify([]));
