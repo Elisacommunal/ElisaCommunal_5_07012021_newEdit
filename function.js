@@ -4,19 +4,6 @@
 //
 //
 
-//fonction compteur
-function meter() {
-    let qty = parseInt(document.getElementById("qte").value);
-    if (qty > 0) {
-        return qty;
-    } else {
-        qty = 1;
-        alert("Quantité non valide, 1 ajouté au panier par défault");
-    }
-    //console.log(qty);
-    return qty;
-};
-
 
 // fonction pour initialiser les cards 
 function setGeneral(container, camElement, selector) {
@@ -104,6 +91,19 @@ function displayProduct(product) {
     // ajout des données au template de base
     containerProduct.append(container);
 }
+
+//fonction compteur
+function meter() {
+    let qty = parseInt(document.getElementById("qte").value);
+    if (qty > 0) {
+        return qty;
+    } else {
+        qty = 1;
+        alert("Quantité non valide, 1 ajouté au panier par défault");
+    }
+    //console.log(qty);
+    return qty;
+};
 
 //
 //
@@ -219,6 +219,7 @@ function totalPriceCartMeter() {
     } else {
         let totalPriceCart = arrayTotalPrice.reduce((accumulator, currentValue) => accumulator + currentValue);
         totalPriceOrder.innerHTML = totalPriceCart;
+        priceDNone.classList.remove('d-none')
         localStorage.setItem("totalPrice", totalPriceCart);
         console.log(localStorage);
     }
