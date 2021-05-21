@@ -6,6 +6,8 @@ const cameraCard = document.querySelector("#camera-card");
 let btn = document.querySelector(".cart") 
 
 // UTILITIES
+// fonction qui affiche le nombre d'articles dans le panier
+cameraNumber();
 
 fetch(urlApiId)
     .then((response) => 

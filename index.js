@@ -39,7 +39,7 @@ async function getData (parameter) {
 
 
 // UTILITIES
-
+// fonction qui affiche le nombre d'articles dans le panier
+cameraNumber();
 // appel de la fonction suivant Id et selector
-
 getAlldata(placement)

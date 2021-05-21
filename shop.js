@@ -8,6 +8,8 @@ const priceDNone = document.getElementById("title-price")
 
 // UTILITIES
 
+// fonction qui affiche le nombre d'articles dans le panier
+cameraNumber();
 
 listenerCart()
 

@@ -318,37 +318,4 @@ function cameraNumber(){
         cartCamera.innerHTML += count;
     }
 };
-cameraNumber();
 
-/* let monarray = [
-    "image",
-    "titre",
-    "prix",
-]
-
-let monarray2 = [
-    "image",
-    "titre",
-    "prix",
-]
-
-let monarray3 = [
-    "image",
-    "titre",
-    "prix",
-]
-
-let mesproduits = [
-    monarray,
-    monarray2,
-    monarray3
-]
-
-
-setImageCart(mesprroduits[0][0])
-
-
-mesProduits.foreach( monproduit => {
-    setImageCart( monProduit[0] )
-    setTitleCart( monProduit[0] )
-} ) */
