@@ -19,7 +19,6 @@ function setGeneral(container, camElement, selector) {
     }else{
     element.innerHTML = camElement;
     }
-    console.log(element);
 }
 
 
@@ -70,7 +69,6 @@ function lensesOption(product) {
         let newLensesChoice = document.createElement("option")
         newLensesChoice.innerHTML = product.lenses[i];
         lensesChoice.append(newLensesChoice);
-        console.log(newLensesChoice);
     }
 };
 
@@ -101,7 +99,6 @@ function meter() {
         qty = 1;
         alert("Quantité non valide, 1 ajouté au panier par défault");
     }
-    //console.log(qty);
     return qty;
 };
 
@@ -169,10 +166,10 @@ function displayCart(cam, index) {
     // si on veut supprimer on appel la fonction et on recharge la page
     if (window.confirm(`Voulez-vous vraiment supprimer cet article de votre panier ?`)) {
         deleteCamera(index);
-        window.location.href = "shop.html";
+        window.location.href = "./shop.html";
     // sinon on recharge la page
     } else {
-        window.location.href = "shop.html";
+        window.location.href = "./shop.html";
     };   
 });
     return container;
@@ -211,17 +208,15 @@ function totalPriceCartMeter() {
         // envoi du prix total dans le tableau
         arrayTotalPrice.push(priceProduct);
     }
-    console.log(arrayTotalPrice);
     // si le tableau est vide on renvoit à la page du panier vide
     if (arrayTotalPrice.length === 0) {
-        location.assign('shop.html');
+        location.assign('./shop.html');
     // sinon on ajoute le prix des produits, on affichage le montant total et on redéfini le prix total dans le localStorage
     } else {
         let totalPriceCart = arrayTotalPrice.reduce((accumulator, currentValue) => accumulator + currentValue);
         totalPriceOrder.innerHTML = totalPriceCart;
         priceDNone.classList.remove('d-none')
         localStorage.setItem("totalPrice", totalPriceCart);
-        console.log(localStorage);
     }
 }
 
@@ -243,19 +238,15 @@ function formManagement(){
             city: document.getElementById('inputCity').value,
             email: document.getElementById('inputEmail').value,
         };
-        //console.log(contact);
 
         let products = [];
-        //console.log(cameraStore);
         // pour chaque produits de cameraStore on récupere son id et on l'envoi dans la tableau products
         for (let camreraInstore of cameraStore){
             let productsId = camreraInstore.camId;
             products.push(productsId);
-            console.log(products);
         }
 
         let order = { contact, products };
-        console.log(order);
 
         // fetch Order POST
         let sendData = fetch("http://localhost:3000/api/cameras/order", {
@@ -268,30 +259,26 @@ function formManagement(){
         sendData.then( async response =>{
 
             try{// traitement de la reponse, récupération de l'id de confirmation du serveur
-                console.log(response);
                 let confirmation = await response.json();
-                console.log(confirmation);
                 let confirmationId = confirmation.orderId;
-                console.log(confirmationId);
+                
                 // création de variable avec contact et l'id récupéré
                 let result = {
                     contact: contact,
                     confirmationId: confirmationId,
                 }
-                console.log(result);
                 // si localStorage est défini on envoi result dans localStorage et on vide la selection en créant un tableau vide 
                 //qu'on envoi dans localStorage et redirection page confirmation
                 if(typeof localStorage != "undefined"){
                     localStorage.setItem("confirm", JSON.stringify(result));
                     localStorage.setItem("camInCart", JSON.stringify([]));
                 
-                    window.location.href = "confirmation.html";
+                    window.location.href = "../confirmation/confirmation.html";
 
                 }else{
                     alert("LocalStorage n'est pas définit")
                 }
             } catch(error) {
-                console.log(error);
                 alert("Une erreur est survenue, veuillez retenter plus tard")
             }
         })
@@ -300,7 +287,7 @@ function formManagement(){
 
 //
 //
-// PAGE CONFIRMATION
+// COMMONS
 //
 //
 

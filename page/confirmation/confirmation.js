@@ -8,7 +8,7 @@ let customerCity = confirmCart.contact.city;
 
 // Intégration via le HTML
 let totalPrice = localStorage.getItem("totalPrice");
-console.log(totalPrice);
+
 
 let firstName = document.getElementById("firstName")
 firstName.innerHTML += customerFirstName;

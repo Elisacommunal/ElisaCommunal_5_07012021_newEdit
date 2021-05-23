@@ -27,7 +27,7 @@ fetch(urlApiId)
               get totalPrice (){
                     return this.camPrice * this.camQuantity;
                 } 
-            };console.log(cameraChoice);
+            };
            // si le localStorage est défini
             if(typeof localStorage != "undefined"){
                 // on recupère la valeur dans le localStorage
@@ -43,13 +43,13 @@ fetch(urlApiId)
                     // on met la variable cameraStore dans localStorage (on redéfini camInCart)
                     localStorage.setItem("camInCart", JSON.stringify(cameraStore));
                           if (window.confirm(`Vous avez bien ajouté ${cameraChoice.camQuantity} - ${product.name} au panier. Souhaitez-vous continuer vos achat ?`)) {
-                            window.location.href = "index.html";
+                            window.location.href = "../../index.html";
                         } else {
-                            window.location.href = "shop.html";
+                            window.location.href = "../shop/shop.html";
                         };   
                   } else {
                     alert("Une erreur est survenue");
                   }
         });
     })
-      .catch((err) => console.log("erreur :" + err)));
+      .catch((err) => ("erreur :" + err)));
