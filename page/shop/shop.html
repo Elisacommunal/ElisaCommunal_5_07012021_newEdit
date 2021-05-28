@@ -71,28 +71,28 @@
                 <h2>Formulaire</h2>
                 <form class="row" id="formChecked">
                     <div class="col-10 offset-1 col-md-6 offset-md-0 space">
-                        <input type="text" class="form-control border-dark" id="inputFirstName" placeholder="Prénom" aria-label="Prénom" required>
+                        <input type="text" class="form-control border-dark" id="inputFirstName" placeholder="Prénom" aria-label="Prénom" pattern="[A-Z][a-z]{2,40}" required>
                     </div>
                     <div class=" col-10 offset-1 col-md-6 offset-md-0 space">
-                        <input type="text" class="form-control border-dark" id="inputLastName" placeholder="Nom" aria-label="Nom" required>
+                        <input type="text" class="form-control border-dark" id="inputLastName" placeholder="Nom" aria-label="Nom" pattern="[A-Z][a-z]{2,40}" required>
                     </div>
                     <div class="col-10 offset-1 col-md-12 offset-md-0 space">
-                        <input type="email" class="form-control border-dark" id="inputEmail" placeholder="Email" aria-label="Email" required>
+                        <input type="email" class="form-control border-dark" id="inputEmail" placeholder="Email" aria-label="Email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                     </div>
                     <div class="col-10 offset-1 col-md-12 offset-md-0 space">
-                        <input type="text" class="form-control border-dark" id="inputAddress" placeholder="Adresse" aria-label="Adresse" required>
+                        <input type="text" class="form-control border-dark" id="inputAddress" placeholder="Adresse" aria-label="Adresse" pattern="[A-Z][0-9][a-z]{2,50}" required>
                     </div>
                     <div class="col-10 offset-1 col-md-12 offset-md-0 space">
                         <input type="text" class="form-control border-dark" id="inputAddress2" placeholder="Appartement, étage, batiment ..." aria-label="Appartement, étage, batiment ...">
                     </div>
                     <div class="col-10 offset-1 col-md-5 offset-md-0 space">
-                        <input type="text" class="form-control border-dark" id="inputCity" placeholder="Ville" aria-label="Ville" required>
+                        <input type="text" class="form-control border-dark" id="inputCity" placeholder="Ville" aria-label="Ville" pattern="[A-Z][a-z]{2,40}" required>
                     </div>
                     <div class="col-10 offset-1 col-md-4 offset-md-0 space">
-                        <input type="text" class="form-control border-dark" id="inputCountry" placeholder="Pays" aria-label="Pays" required>
+                        <input type="text" class="form-control border-dark" id="inputCountry" placeholder="Pays" aria-label="Pays" pattern="[A-Z][a-z]{2,40}" required>
                         </div>
                     <div class="col-10 offset-1 col-md-3 offset-md-0 space">
-                        <input type="text" class="form-control border-dark" id="inputZip" placeholder="Code Postal" aria-label="Code postal" required>
+                        <input type="text" class="form-control border-dark" id="inputZip" placeholder="Code Postal" aria-label="Code postal" pattern="[0-9]{5}" required>
                     </div>
                     <div class="col-10 offset-1 space">
                         <div class="form-check center">
